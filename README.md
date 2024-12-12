@@ -19,7 +19,7 @@ The app offers a clean, user-friendly interface and is designed to be both funct
 1.  Clone the Repository
     Start by cloning the repository to your local machine:
 
-        git clone
+        git clone https://github.com/anoosha-sanugula/recipeBook-frontend.git
         cd recipeBook
 
 2.  Run the following command to install the required packages for ios:
@@ -35,8 +35,8 @@ The app offers a clean, user-friendly interface and is designed to be both funct
 1.  Clone the Repository
     Start by cloning the repository to your local machine:
 
-        git clone 
-        cd petbuddy-backend
+        git clone https://github.com/anoosha-sanugula/recipeBook-backend.git
+        cd recipeBook-backend
 
 2.  Run the following command to install the required npm packages:
 
