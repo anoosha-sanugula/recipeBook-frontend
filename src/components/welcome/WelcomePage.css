@@ -1,0 +1,157 @@
+.body {
+  background-image: url("/public/assets/food-box.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  text-align: center;
+}
+.slide-content {
+  position: absolute;
+  bottom: 115px;
+  right: 0;
+  width: 100%;
+  text-align: left;
+}
+
+.slide-text {
+  width: auto;
+  padding: 10px 35px 10px 18px;
+  margin: 0 0 10px 0;
+  background: #fefcfc;
+  font-family: "MuseoSlab500Italic", Helvetica, sans-serif;
+  font-size: 26px;
+  border: 1px solid #fff;
+  border-radius: 10px 0 0 10px;
+  float: right;
+  clear: both;
+  line-height: 28px;
+  text-align: left;
+}
+.slide-title {
+  padding: 18px 35px 18px 18px;
+  margin: 0 0 10px 0;
+  background: #f58e2a;
+  font-family: "MuseoSlab900Regular", Helvetica, sans-serif;
+  font-size: 27px;
+  color: #fff;
+  border-radius: 10px 0 0 10px;
+  float: right;
+  clear: both;
+  line-height: 28px;
+  text-align: left;
+}
+
+.header {
+  padding: 18px 35px 18px 18px;
+  margin: 0;
+  background: #18f04a;
+  font-family: "MuseoSlab900Regular", Helvetica, sans-serif;
+  font-size: 27px;
+  color: #fff;
+  border-radius: 10px;
+  line-height: 28px;
+  text-align: left;
+  position: absolute;
+  width: 600px;
+  top: 20px;
+  left: 40px;
+  z-index: 1;
+}
+
+.start-button {
+  padding: 18px 35px 18px 18px;
+  margin: 0;
+  border-color: #e877b5;
+  background: #e877b5;
+  font-family: "MuseoSlab900Regular", Helvetica, sans-serif;
+  font-size: 27px;
+  color: #fff;
+  border-radius: 10px;
+  line-height: 28px;
+  text-align: left;
+  position: absolute;
+  text-align: center;
+  width: 300px;
+  top: 250px;
+  left: 40px;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .header {
+    font-size: 22px;
+    max-width: 90%;
+    left: 5%;
+  }
+
+  .start-button {
+    font-size: 22px;
+    max-width: 90%;
+    top: 300px;
+  }
+
+  .slide-title {
+    font-size: 22px;
+  }
+
+  .slide-text {
+    font-size: 20px;
+  }
+
+  .body {
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .header {
+    font-size: 18px;
+    max-width: 100%;
+    left: 0;
+    padding: 12px;
+  }
+
+  .start-button {
+    font-size: 20px;
+    max-width: 90%;
+    top: 350px;
+  }
+
+  .slide-title {
+    font-size: 18px;
+    padding: 12px 20px;
+  }
+
+  .slide-text {
+    font-size: 18px;
+    padding: 8px 20px;
+  }
+
+  .body {
+    height: auto;
+    padding: 0 5px;
+  }
+
+  .learn-more {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .start-button {
+    font-size: 30px;
+    width: 300px;
+    top: 250px;
+  }
+  .slide-title {
+    font-size: 32px;
+  }
+
+  .slide-text {
+    font-size: 28px;
+  }
+}
