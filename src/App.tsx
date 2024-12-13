@@ -1,12 +1,16 @@
 import React from "react";
 import "../src/styles/App.css";
+import { Routes, Route } from "react-router-dom";
+import Welcomepage from "./components/welcome/WelcomePage";
+import Register from "./components/register/Register";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Welcome to RecipeBook</h1>
-      </header>
+      <Routes>
+        <Route path="/" element={<Welcomepage />} />
+        <Route path="register" element={<Register />} />
+      </Routes>
     </div>
   );
 }
