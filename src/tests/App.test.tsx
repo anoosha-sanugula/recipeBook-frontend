@@ -28,7 +28,7 @@ describe("App Component", () => {
         <App />
       </MemoryRouter>
     );
-    expect(screen.getByText(/hello/i)).toBeInTheDocument();
+    expect(screen.getByText(/Register Here!/i)).toBeInTheDocument();
   });
 
   test('navigates to Register page when "Start Cooking!" button is clicked', () => {
@@ -41,6 +41,6 @@ describe("App Component", () => {
       </MemoryRouter>
     );
     fireEvent.click(screen.getByText(/Start Cooking!/i));
-    expect(screen.getByText(/hello/i)).toBeInTheDocument();
+    expect(screen.getByText(/Register Here!/i)).toBeInTheDocument();
   });
 });
