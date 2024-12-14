@@ -25,12 +25,6 @@ const Welcomepage = () => {
           <p>The kitchen is a place of discovery, creativity, and comfort.</p>
           <p> Start cooking and make the moment perfect.</p>
         </div>
-        <div className="learn-wrapper">
-          <a
-            className="learn-more"
-            href="https://www.foodwise.com.au/better-by-the-box"
-          ></a>
-        </div>
       </div>
     </div>
   );
