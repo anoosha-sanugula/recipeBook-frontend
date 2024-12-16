@@ -3,11 +3,9 @@ import "./Login.css";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Credentials } from "../../types/Credentials";
 import { Link, useNavigate } from "react-router-dom";
-import { userContext } from "../context/UserContext";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { setUserdata } = useContext(userContext);
   const {
     register,
     handleSubmit,
@@ -32,7 +30,7 @@ const Login = () => {
           email: userdata.data.email,
           country: userdata.data.country,
         };
-        setUserdata(user);
+        localStorage.setItem("userdata", JSON.stringify(user));
         navigate("/home");
       } else {
         const result = await response.json();

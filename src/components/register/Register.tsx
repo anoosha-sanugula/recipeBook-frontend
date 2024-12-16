@@ -3,11 +3,9 @@ import "./Register.css";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { User } from "../../types/User";
 import { Link, useNavigate } from "react-router-dom";
-import { userContext } from "../context/UserContext";
 
 const Register = () => {
   const navigate = useNavigate();
-  const { setUserdata } = useContext(userContext);
   const {
     register,
     handleSubmit,
@@ -25,7 +23,7 @@ const Register = () => {
         body: JSON.stringify(user),
       });
       if (response.ok) {
-        setUserdata(user);
+        localStorage.setItem("userdata", JSON.stringify(user));
         navigate("/home");
       } else {
         const result = await response.json();
