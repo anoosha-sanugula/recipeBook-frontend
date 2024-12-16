@@ -17,12 +17,13 @@ const Login = () => {
 
   const loginUser: SubmitHandler<Credentials> = async (credentials: any) => {
     try {
-      const response = await fetch(
-        `http://localhost:3000/recipebook/users?username=${credentials.username}&password=${credentials.password}`,
-        {
-          method: "GET",
-        }
-      );
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/user`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(credentials),
+      });
       if (response.ok) {
         const userdata = await response.json();
         const user = {
