@@ -17,7 +17,7 @@ const Register = () => {
 
   const registerUser: SubmitHandler<User> = async (user: any) => {
     try {
-      const response = await fetch(`http://localhost:3000/recipebook/users`, {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/users`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
