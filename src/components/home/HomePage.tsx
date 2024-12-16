@@ -1,22 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./HomePage.css";
 import { Link } from "react-router-dom";
-import { IoSearchOutline } from "react-icons/io5";
-import { userContext } from "../context/UserContext";
+// import { IoSearchOutline } from "react-icons/io5";
 import { Recipe } from "../../types/Recipe";
 
 function HomePage() {
   const [searchRecipe, setSearchRecipe] = useState("");
-  const { userdata } = useContext(userContext);
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const handleSearchRecipe = (event: any) => {
     setSearchRecipe(event.target.value);
   };
   useEffect(() => {
     fetchRecipes();
-  }, [userdata.username]);
+  }, []);
   const fetchRecipes = async () => {
-    const url = `http://localhost:3000/recipebook/recipes`;
+    const url = `${process.env.REACT_APP_BASE_URL}/recipes`;
     try {
       const response = await fetch(url, {
         method: "GET",
@@ -64,7 +62,7 @@ function HomePage() {
       <div className="search-container">
         <div className="search-bar-wrapper">
           <div className="search-icon">
-            <IoSearchOutline />
+            {/* <IoSearchOutline /> */}
           </div>
           <input
             type="text"

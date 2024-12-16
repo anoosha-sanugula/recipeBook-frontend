@@ -2,7 +2,6 @@ import React from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter as Router } from "react-router-dom";
 import Login from "./Login";
-import { userContext, UserProvider } from "../context/UserContext";
 
 global.alert = jest.fn();
 global.fetch = jest.fn();
@@ -68,9 +67,14 @@ describe("Should test login page", () => {
 
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith(
-        "http://localhost:3000/recipebook/users?username=anoosha&password=anoosha",
+        "http://localhost:3000/recipebook/user",
         expect.objectContaining({
-          method: "GET",
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            username: "anoosha",
+            password: "anoosha",
+          }),
         })
       );
     });
@@ -143,19 +147,7 @@ describe("Should test login page", () => {
 
     render(
       <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-        <userContext.Provider
-          value={{
-            userdata: {
-              username: "anoosha",
-              password: "anoosha",
-              email: "anoosha@gmail.com",
-              country: "India",
-            },
-            setUserdata,
-          }}
-        >
           <Login />
-        </userContext.Provider>
       </Router>
     );
 
@@ -170,18 +162,16 @@ describe("Should test login page", () => {
 
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith(
-        "http://localhost:3000/recipebook/users?username=anoosha&password=anoosha",
+        "http://localhost:3000/recipebook/user",
         expect.objectContaining({
-          method: "GET",
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            username: "anoosha",
+            password: "anoosha",
+          }),
         })
       );
-    });
-
-    expect(setUserdata).toHaveBeenCalledWith({
-      username: "anoosha",
-      password: "anoosha",
-      email: "anoosha@gmail.com",
-      country: "India",
     });
   });
 });

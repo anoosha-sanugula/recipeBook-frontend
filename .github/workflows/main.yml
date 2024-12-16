@@ -4,13 +4,14 @@ on:
   push:
     branches:
       - main
-      - recipeBook-version-1
   pull_request:
     branches:
       - main
 jobs:
   Workflow-for-RecipeBook-Frontend:
     runs-on: ubuntu-latest
+    env:
+      REACT_APP_BASE_URL: http://localhost:3000/recipebook
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4

@@ -1,13 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./Login.css";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Credentials } from "../../types/Credentials";
 import { Link, useNavigate } from "react-router-dom";
-import { userContext } from "../context/UserContext";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { setUserdata } = useContext(userContext);
   const {
     register,
     handleSubmit,
@@ -17,12 +15,13 @@ const Login = () => {
 
   const loginUser: SubmitHandler<Credentials> = async (credentials: any) => {
     try {
-      const response = await fetch(
-        `http://localhost:3000/recipebook/users?username=${credentials.username}&password=${credentials.password}`,
-        {
-          method: "GET",
-        }
-      );
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/user`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(credentials),
+      });
       if (response.ok) {
         const userdata = await response.json();
         const user = {
@@ -31,7 +30,7 @@ const Login = () => {
           email: userdata.data.email,
           country: userdata.data.country,
         };
-        setUserdata(user);
+        localStorage.setItem("userdata", JSON.stringify(user));
         navigate("/home");
       } else {
         const result = await response.json();
