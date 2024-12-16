@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./Login.css";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Credentials } from "../../types/Credentials";
