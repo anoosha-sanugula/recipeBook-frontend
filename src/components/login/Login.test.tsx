@@ -68,9 +68,14 @@ describe("Should test login page", () => {
 
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith(
-        "http://localhost:3000/recipebook/users?username=anoosha&password=anoosha",
+        "http://localhost:3000/recipebook/user",
         expect.objectContaining({
-          method: "GET",
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            username: "anoosha",
+            password: "anoosha",
+          }),
         })
       );
     });
@@ -170,9 +175,14 @@ describe("Should test login page", () => {
 
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith(
-        "http://localhost:3000/recipebook/users?username=anoosha&password=anoosha",
+        "http://localhost:3000/recipebook/user",
         expect.objectContaining({
-          method: "GET",
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            username: "anoosha",
+            password: "anoosha",
+          }),
         })
       );
     });
