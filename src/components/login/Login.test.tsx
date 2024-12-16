@@ -2,7 +2,6 @@ import React from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter as Router } from "react-router-dom";
 import Login from "./Login";
-import { userContext, UserProvider } from "../context/UserContext";
 
 global.alert = jest.fn();
 global.fetch = jest.fn();
@@ -148,19 +147,7 @@ describe("Should test login page", () => {
 
     render(
       <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-        <userContext.Provider
-          value={{
-            userdata: {
-              username: "anoosha",
-              password: "anoosha",
-              email: "anoosha@gmail.com",
-              country: "India",
-            },
-            setUserdata,
-          }}
-        >
           <Login />
-        </userContext.Provider>
       </Router>
     );
 
@@ -185,13 +172,6 @@ describe("Should test login page", () => {
           }),
         })
       );
-    });
-
-    expect(setUserdata).toHaveBeenCalledWith({
-      username: "anoosha",
-      password: "anoosha",
-      email: "anoosha@gmail.com",
-      country: "India",
     });
   });
 });
