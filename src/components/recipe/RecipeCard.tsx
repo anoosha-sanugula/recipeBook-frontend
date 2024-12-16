@@ -7,10 +7,12 @@ const RecipeCard = () => {
   const [recipe, setRecipe] = useState<Recipe | null>(null);
   const extractVideoId = (url: string) => {
     const regex =
-      /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|\S+\?v=)|youtu\.be\/)([\w\-]+)(?:[?&]t=[\d\w\-]+)?/;
+      /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^/\n\s]+\/\S+\/|\S+\?v=)|youtu\.be\/)([\w-]+)(?:[?&]t=[\d\w-]+)?/;
     const match = url.match(regex);
     return match ? match[1] : null;
-  };
+  };  
+  
+  
   let embedUrl;
   if (recipe?.videoUrl) {
     const videoId = extractVideoId(recipe.videoUrl);

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./HomePage.css";
 import { Link } from "react-router-dom";
 // import { IoSearchOutline } from "react-icons/io5";
