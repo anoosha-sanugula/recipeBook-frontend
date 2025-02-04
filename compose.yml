@@ -6,8 +6,8 @@ services:
     volumes:
       - .:/app
       - ./node_modules:/app/node_modules
-    env_file:
-      - .env
+    environment:
+      - REACT_APP_BASE_URL=http://localhost:3000/recipebook
     command: npm start
     networks:
       - recipe-book-network
