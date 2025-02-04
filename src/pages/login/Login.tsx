@@ -1,30 +1,41 @@
 import React from "react";
-import "./Register.css";
+import "./Login.css";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { User } from "../../types/User";
+import { Credentials } from "./Credentials.type";
 import { Link, useNavigate } from "react-router-dom";
 
-const Register = () => {
+const Login = () => {
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<User>();
+  } = useForm<Credentials>();
 
-  const registerUser: SubmitHandler<User> = async (user: any) => {
+  const loginUser: SubmitHandler<Credentials> = async (credentials: any) => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/users`, {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/user`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(user),
+        body: JSON.stringify(credentials),
       });
       if (response.ok) {
+        const userdata = await response.json();
+        const user = {
+          username: userdata.data.username,
+          password: userdata.data.password,
+          email: userdata.data.email,
+          country: userdata.data.country,
+        };
         localStorage.setItem("userdata", JSON.stringify(user));
-        navigate("/home");
+        const token = userdata.token || userdata.accessToken;
+        if (token) {
+          localStorage.setItem("accessToken", token);
+        }
+        navigate("/home",{ replace: true });
       } else {
         const result = await response.json();
         alert(result.message);
@@ -37,9 +48,9 @@ const Register = () => {
   };
 
   return (
-    <div className="register-container">
-      <form onSubmit={handleSubmit(registerUser)}>
-        <h3>Register Here!</h3>
+    <div className="login-container">
+      <form onSubmit={handleSubmit(loginUser)}>
+        <h3>Login Here!</h3>
         <div className="form-control">
           <label htmlFor="username">Username: </label>
           <input
@@ -56,22 +67,6 @@ const Register = () => {
           {errors.username && (
             <p className="errorMsg">Username must be at least 5 characters</p>
           )}
-        </div>
-
-        <div className="form-control">
-          <label htmlFor="email">Email: </label>
-          <input
-            type="text"
-            id="email"
-            {...register("email", {
-              required: true,
-              pattern: {
-                value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
-                message: "Email is not valid.",
-              },
-            })}
-          />
-          {errors.email && <p className="errorMsg">Email is not valid</p>}
         </div>
 
         <div className="form-control">
@@ -93,16 +88,12 @@ const Register = () => {
         </div>
 
         <div className="form-control">
-          <label htmlFor="country">Country: </label>
-          <input type="text" id="country" {...register("country")} />
-        </div>
-        <div className="form-control">
-          <button type="submit">Register</button>
+          <button type="submit">Login</button>
         </div>
         <div>
-          <span className="login-text">Already have an account?</span>
-          <span className="login">
-            <Link to="/login">Login</Link>
+          <span className="register-text">Don't have an account?</span>
+          <span className="register">
+            <Link to="/register">Register</Link>
           </span>
         </div>
       </form>
@@ -110,4 +101,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

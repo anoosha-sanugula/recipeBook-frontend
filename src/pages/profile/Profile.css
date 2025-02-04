@@ -1,0 +1,81 @@
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f7fa;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("/public/assets/home-bg.jpg");
+  background-size: cover;
+  z-index: -1;
+}
+
+.profile-card {
+  background-color: rgba(256, 256, 256, 0.5);
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+}
+
+.profile-header {
+  margin-bottom: 20px;
+}
+
+.profile-header img.profile-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #f58e2a;
+  margin-bottom: 15px;
+}
+
+.profile-header h1 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 15px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.profile-info {
+  margin-bottom: 25px;
+  color: #555;
+  font-size: 1rem;
+  font-family: "Roboto", sans-serif;
+}
+
+.profile-info p {
+  margin: 10px 0;
+}
+
+.logout-btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+.logout-btn {
+  background-color: #f58e2a;
+  color: white;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #f58e2a;
+}
+
+.unauthenticated-message {
+  text-align: center;
+  color: #f44336;
+  font-size: 1.5rem;
+}

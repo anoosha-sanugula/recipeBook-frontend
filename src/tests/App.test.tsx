@@ -35,7 +35,7 @@ describe("App Component", () => {
         <App />
       </MemoryRouter>
     );
-    expect(screen.getByText(/Homepage/i)).toBeInTheDocument();
+    expect(screen.getByText(/Recipes:/i)).toBeInTheDocument();
   });
 
   test('renders Register page on "/register" route', async () => {
@@ -102,7 +102,7 @@ describe("App Component", () => {
       </MemoryRouter>
     );
 
-    expect(screen.getByText(/Homepage/i)).toBeInTheDocument();
+    expect(screen.getByText(/Recipes:/i)).toBeInTheDocument();
   });
 
   test("does not crash and renders WelcomePage even when localStorage.getItem fails", async () => {

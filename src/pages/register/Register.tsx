@@ -1,40 +1,38 @@
 import React from "react";
-import "./Login.css";
+import "./Register.css";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Credentials } from "../../types/Credentials";
+import { User } from "./User.type";
 import { Link, useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Register = () => {
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<Credentials>();
+  } = useForm<User>();
 
-  const loginUser: SubmitHandler<Credentials> = async (credentials: any) => {
+  const registerUser: SubmitHandler<User> = async (user: any) => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/user`, {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/users`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(credentials),
+        body: JSON.stringify(user),
       });
+      const userdata = await response.json();
       if (response.ok) {
-        const userdata = await response.json();
-        const user = {
-          username: userdata.data.username,
-          password: userdata.data.password,
-          email: userdata.data.email,
-          country: userdata.data.country,
-        };
         localStorage.setItem("userdata", JSON.stringify(user));
-        navigate("/home");
+
+        const token = userdata.accessToken;
+        if (token) {
+          localStorage.setItem("accessToken", token);
+        }
+        navigate("/home", { replace: true });
       } else {
-        const result = await response.json();
-        alert(result.message);
+        alert(userdata.message);
       }
     } catch (error) {
       alert("There was an error while submitting the form.");
@@ -44,9 +42,9 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
-      <form onSubmit={handleSubmit(loginUser)}>
-        <h3>Login Here!</h3>
+    <div className="register-container">
+      <form onSubmit={handleSubmit(registerUser)}>
+        <h3>Register Here!</h3>
         <div className="form-control">
           <label htmlFor="username">Username: </label>
           <input
@@ -63,6 +61,22 @@ const Login = () => {
           {errors.username && (
             <p className="errorMsg">Username must be at least 5 characters</p>
           )}
+        </div>
+
+        <div className="form-control">
+          <label htmlFor="email">Email: </label>
+          <input
+            type="text"
+            id="email"
+            {...register("email", {
+              required: true,
+              pattern: {
+                value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+                message: "Email is not valid.",
+              },
+            })}
+          />
+          {errors.email && <p className="errorMsg">Email is not valid</p>}
         </div>
 
         <div className="form-control">
@@ -84,12 +98,16 @@ const Login = () => {
         </div>
 
         <div className="form-control">
-          <button type="submit">Login</button>
+          <label htmlFor="country">Country: </label>
+          <input type="text" id="country" {...register("country")} />
+        </div>
+        <div className="form-control">
+          <button type="submit">Register</button>
         </div>
         <div>
-          <span className="register-text">Don't have an account?</span>
-          <span className="register">
-            <Link to="/register">Register</Link>
+          <span className="login-text">Already have an account?</span>
+          <span className="login">
+            <Link to="/login">Login</Link>
           </span>
         </div>
       </form>
@@ -97,4 +115,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
