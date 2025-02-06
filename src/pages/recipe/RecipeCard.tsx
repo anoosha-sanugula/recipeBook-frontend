@@ -31,7 +31,7 @@ const RecipeCard = () => {
   }
   useEffect(() => {
     const fetchRecipe = async () => {
-      const url = `http://localhost:3000/recipebook/recipes/${recipeId}`;
+      const url = `${process.env.REACT_APP_BASE_URL}/recipes/${recipeId}`;
       const token = localStorage.getItem("accessToken");
 
       const headers: HeadersInit = token
