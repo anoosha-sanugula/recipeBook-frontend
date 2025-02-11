@@ -1,8 +1,12 @@
 pipeline {
     agent any
     environment {
-        // PATH = "/usr/local/bin:${env.PATH}"
-        REACT_APP_BASE_URL="http://localhost:4000/recipebook"
+        PATH = "/usr/local/bin:${env.PATH}"
+        dockerImage=''
+        registry='anoosha1221/recipebook-react'
+        registryCredential='docker_hub'
+        dockerhub_username='anoosha1221'
+        dockerhub_password='surya@1359'
     }
     stages {
         stage('Checkout') {
@@ -10,19 +14,25 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/anoosha-sanugula/recipeBook-frontend.git'
             }
         }
-        stage('Install Frontend dependencies') {
+        stage('Install dependencies') {
             steps {
                 sh 'npm install' 
             }
         }
-        stage('Build') {
-            steps {
-                sh 'npm run build'  
+        stage('Build docker image'){
+            steps{
+                script{
+                    dockerImage=docker.build registry
+                }
             }
         }
-        stage('Test') {
+        stage('Docker Push') {
+            agent any
             steps {
-                sh 'npm test' 
+                withCredentials([usernamePassword(credentialsId: 'docker_hub', passwordVariable: 'surya@1359', usernameVariable: 'anoosha1221')]) {
+                    sh 'docker login -u ${dockerhub_username} -p ${dockerhub_password}'
+                    sh 'docker push ${registry}'
+                }
             }
         }
     }
