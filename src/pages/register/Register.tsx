@@ -3,6 +3,7 @@ import "./Register.css";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { User } from "./User.type";
 import { Link, useNavigate } from "react-router-dom";
+import 'dotenv/config'
 
 const Register = () => {
   const navigate = useNavigate();

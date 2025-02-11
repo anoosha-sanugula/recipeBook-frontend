@@ -3,6 +3,7 @@ import "./Login.css";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Credentials } from "./Credentials.type";
 import { Link, useNavigate } from "react-router-dom";
+import 'dotenv/config'
 
 const Login = () => {
   const navigate = useNavigate();
