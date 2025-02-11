@@ -78,7 +78,7 @@ describe("Should test register page", () => {
 
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith(
-        "http://localhost:3000/recipebook/users",
+        "http://localhost:4000/recipebook/users",
         expect.objectContaining({
           method: "POST",
           headers: { "Content-Type": "application/json" },

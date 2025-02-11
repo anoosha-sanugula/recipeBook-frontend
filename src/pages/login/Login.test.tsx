@@ -67,7 +67,7 @@ describe("Should test login page", () => {
 
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith(
-        "http://localhost:3000/recipebook/user",
+        "http://localhost:4000/recipebook/user",
         expect.objectContaining({
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -162,7 +162,7 @@ describe("Should test login page", () => {
 
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith(
-        "http://localhost:3000/recipebook/user",
+        "http://localhost:4000/recipebook/user",
         expect.objectContaining({
           method: "POST",
           headers: { "Content-Type": "application/json" },
