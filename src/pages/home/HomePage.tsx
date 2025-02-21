@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./HomePage.css";
 import { Link, useNavigate } from "react-router-dom";
-import { IoSearchOutline } from "react-icons/io5";
 import { Recipe } from "../recipe/Recipe.type";
 import UnAuthenticatedPage from "../unauthenticated/UnAuthenticatedPage";
 
@@ -83,7 +82,6 @@ function HomePage() {
 
           <div className="search-container">
             <div className="search-bar-wrapper">
-              <div className="search-icon"><IoSearchOutline /></div>
               <input
                 type="text"
                 placeholder={searchRecipe === "" ? "Search for Recipes..." : ""}

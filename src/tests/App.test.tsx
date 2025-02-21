@@ -1,7 +1,6 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
-import React from "react";
 
 describe("App Component", () => {
   test('renders Welcomepage on "/" route when not logged in', async () => {
@@ -134,65 +133,7 @@ describe("App Component", () => {
     expect(screen.getByText(/Start Cooking!/i)).toBeInTheDocument();
   });
 
-  test("handles error in useEffect when localStorage.getItem throws an error", async () => {
-    Object.defineProperty(window, "localStorage", {
-      value: {
-        getItem: jest.fn().mockImplementation(() => {
-          throw new Error("Failed to read localStorage");
-        }),
-        setItem: jest.fn(),
-        removeItem: jest.fn(),
-        clear: jest.fn(),
-      },
-      writable: true,
-    });
 
-    render(
-      <MemoryRouter
-        initialEntries={["/"]}
-        future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
-      >
-        <App />
-      </MemoryRouter>
-    );
-    await waitFor(() =>
-      expect(
-        screen.getByText(/Recipes Right for Your Family/i)
-      ).toBeInTheDocument()
-    );
-
-    expect(screen.getByText(/Start Cooking!/i)).toBeInTheDocument();
-  });
-  test("does not crash and renders WelcomePage even when localStorage.getItem fails", async () => {
-    Object.defineProperty(window, "localStorage", {
-      value: {
-        getItem: jest.fn().mockImplementation(() => {
-          throw new Error("LocalStorage error");
-        }),
-        setItem: jest.fn(),
-        removeItem: jest.fn(),
-        clear: jest.fn(),
-      },
-      writable: true,
-    });
-
-    render(
-      <MemoryRouter
-        initialEntries={["/"]}
-        future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
-      >
-        <App />
-      </MemoryRouter>
-    );
-
-    await waitFor(() => {
-      expect(
-        screen.getByText(/Recipes Right for Your Family/i)
-      ).toBeInTheDocument();
-    });
-
-    expect(screen.getByText(/Start Cooking!/i)).toBeInTheDocument();
-  });
   test("handles error in useEffect when localStorage.getItem throws an error", async () => {
     Object.defineProperty(window, "localStorage", {
       value: {
