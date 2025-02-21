@@ -36,7 +36,7 @@ pipeline {
                 }
             }
         }
-        stage('Docker Push images') {
+        stage('Docker Push') {
             agent any
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'Surya@1359', usernameVariable: 'anoosha1221')]) {
