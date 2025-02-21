@@ -4,9 +4,9 @@ pipeline {
         PATH = "/usr/local/bin:${env.PATH}"
         dockerImage=''
         registry='anoosha1221/recipebook-react'
-        registryCredential='docker_hub'
+        registryCredential='docker-hub'
         dockerhub_username='anoosha1221'
-        dockerhub_password='surya@1359'
+        dockerhub_password='Surya@1359'
     }
     stages {
         stage('Checkout') {
@@ -39,7 +39,7 @@ pipeline {
         stage('Docker Push') {
             agent any
             steps {
-                withCredentials([usernamePassword(credentialsId: 'docker_hub', passwordVariable: 'surya@1359', usernameVariable: 'anoosha1221')]) {
+                withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'Surya@1359', usernameVariable: 'anoosha1221')]) {
                     sh 'docker login -u ${dockerhub_username} -p ${dockerhub_password}'
                     sh 'docker push ${registry}'
                 }
