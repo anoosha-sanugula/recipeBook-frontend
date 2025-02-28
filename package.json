@@ -12,6 +12,7 @@
     "@testing-library/react": "^16.1.0",
     "cra-template-typescript": "1.2.0",
     "dotenv": "^16.4.7",
+    "lint": "^0.8.19",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-hook-form": "^7.54.1",
@@ -22,6 +23,7 @@
     "web-vitals": "^4.2.4"
   },
   "scripts": {
+    "lint": "eslint.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
